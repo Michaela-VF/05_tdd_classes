@@ -1,21 +1,18 @@
 class GrammarStats:
     def __init__(self):
-        pass
+        self._total_tests = 0
+        self._passed_tests = 0
   
     def check(self, text):
         self.text = text
-        #for char in text:
-        print(f"text[0] is: {text[0]} while text[-1] is: {text[-1]}")
-        return text[0] in ("ABCDEFGHIJKLMNOPQRSTUVWXYZ") and text[-1] in (".?!")
-
-grammar_stats = GrammarStats()
-grammar_stats.check("This is correct!")
-print(grammar_stats.check("This is correct!"))
-
-'''
+        condition = text[0] in ("ABCDEFGHIJKLMNOPQRSTUVWXYZ") and text[-1] in (".?!")
+        if condition:
+            self._passed_tests += 1
+        self._total_tests += 1
+        return condition
+  
     def percentage_good(self):
-        # Returns:
-        #   int: the percentage of texts checked so far that passed the check
-        #        defined in the `check` method. The number 55 represents 55%.
-        pass
-        '''
+        if self._total_tests != 0:
+            return (self._passed_tests/self._total_tests)*100
+        else:
+            return 0

@@ -39,3 +39,16 @@ def test_check_non_cap_start_no_punc_mark_end():
     grammar_stats = GrammarStats()
     result = grammar_stats.check("this is NOT correct")
     assert result == False
+
+'''
+It returns the percentage of texts checked so far that 
+passed the check defined in the `check` method, (e.g The number 55 represents 55%).
+'''
+def test_percentage_good_for_2_out_of_4_returns_50():
+    grammar_stats = GrammarStats()
+    result = grammar_stats.check("This is correct!")
+    result = grammar_stats.check("this is correct!")
+    result = grammar_stats.check("this is NOT correct")
+    result = grammar_stats.check("THIS is correct too!")
+    result = grammar_stats.percentage_good()
+    assert result == 50
